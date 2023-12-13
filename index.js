@@ -23,7 +23,7 @@ app.use("/users", userRouter);
 app.use("/blogs", blogRouter);
 
 app.get('/', async (req,res)=>{
-    const allBlogs = await Blog.find({});
+    const allBlogs = await Blog.find({}).sort({createdAt: -1});
     return res.render("home", {
         user:req.user,
         blogs: allBlogs,

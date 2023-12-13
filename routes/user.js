@@ -12,7 +12,7 @@ router.get("/signup", (req, res) => {
 router.post("/signup", async (req, res) => {
   const { fullName, email, password } = req.body;
   await User.create({ fullName, email, password });
-  return res.redirect("/");
+  return res.redirect("/users/signin");
 });
 
 router.post("/signin", async (req, res) => {
@@ -22,7 +22,7 @@ router.post("/signin", async (req, res) => {
     return res.cookie("token", token).redirect("/");
   } catch (err) {
     return res.render('signin', {
-        err: "Incorrect email or password."
+        err: `${err.toString().split("Error: ")[1]}`
     });
   }
 });

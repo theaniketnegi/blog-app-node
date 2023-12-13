@@ -10,15 +10,24 @@
     <%- include('./partials/navbar') %>
         <% if (locals.blogs) { %>
             <div class="container mt-5">
-                <% blogs.forEach(blog=>{ %>
-                    <div class="card" style="width: 18rem;">
-                        <img class="card-img-top" src="<%= blog.coverImageURL %>" alt="Card image cap">
-                        <div class="card-body">
-                            <h5 class="card-title"><%= blog.title %></h5>
-                            <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read</a>
+                <div class="row row-cols-4">
+                    <% blogs.forEach(blog=>{ %>
+                        <div class="col mb-4">
+                            <div class="card col" style="width: 18rem;">
+                                <div style="height: 200px; overflow: hidden;">
+                                    <img class="card-img-top" style="object-fit:cover; height:100%;"
+                                        src="<%= blog.coverImageURL %>" alt="Card image cap">
+                                </div>
+                                <div class="card-body">
+                                    <h5 class="card-title text-truncate">
+                                        <%= blog.title %>
+                                    </h5>
+                                    <a href="/blogs/<%= blog._id %>" class="btn btn-primary">Read</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                    <% })%>
+                        <% })%>
+                </div>
             </div>
             <% } %>
                 <%- include('./partials/scripts') %>
